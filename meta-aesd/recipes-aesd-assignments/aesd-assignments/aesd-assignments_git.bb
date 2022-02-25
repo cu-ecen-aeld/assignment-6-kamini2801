@@ -4,7 +4,7 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/MIT;md5=0835ade698e0bcf8506ecda
 
 # TODO: Set this  with the path to your assignments rep.  Use ssh protocol and see lecture notes
 # about how to setup ssh-agent for passwordless access
- SRC_URI = "git://git@github.com/cu-ecen-aeld/https://github.com/cu-ecen-aeld/assignments-3-and-later-kamini2801;protocol=ssh;branch=master"
+ SRC_URI = "git://git@github.com/cu-ecen-aeld/assignments-3-and-later-kamini2801;protocol=ssh;branch=master"
 
 PV = "1.0+git${SRCPV}"
 # TODO: set to reference a specific commit hash in your assignment repo
@@ -23,7 +23,7 @@ S = "${WORKDIR}/git/server"
 
  TARGET_LDFLAGS += "-pthread -lrt"
 
-inherit update-rc-D
+inherit update-rc.d
 
 INITSCRIPT_PACKAGES = "${PN}"
 
@@ -47,7 +47,7 @@ do_install () {
 	# See example at https://github.com/cu-ecen-aeld/ecen5013-yocto/blob/ecen5013-hello-world/meta-ecen5013/recipes-ecen5013/ecen5013-hello-world/ecen5013-hello-world_git.bb
 	
 	install -d ${D}${sysconfdir}/init.d
-	install -m ${S}/Start_script.sh ${D}${sysconfdir}/init.d
+	install -m 0755 ${S}/Start_script.sh ${D}${sysconfdir}/init.d
 	install -d ${D}${bindir}
 	install -m 0755 ${S}/aesdsocket ${D}${bindir}
 
